@@ -1,4 +1,7 @@
 import os
+import django_heroku
+import dj_database_url
+import decouple
 
 from pathlib import Path
 
@@ -26,6 +29,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -118,3 +122,8 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'orderform.unikacg@gmail.com'
 
 DEALER_EMAIL= 'guptadikshant12@gmail.com'
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+django_heroku.settings(locals())
